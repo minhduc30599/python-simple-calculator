@@ -22,6 +22,19 @@ def calculate_number(first_num, second_num, oper):
 
     return result
 
+def continue_or_not(result):
+    global flag
+    while True:
+        y_or_n = input(f"Type 'y' to continue calculating with {result}, or type 'n' to start a new calculation: ")
+        if y_or_n == 'n':
+            clear()
+            first_result = 0
+            flag = True
+            break
+        elif y_or_n == 'y':
+            flag = False
+            break
+
 print(logo)
 
 # ask user numbers and operator for calculating
@@ -36,16 +49,7 @@ first_result = calculate_number(first_number, second_number, operator)
 print(f'{first_number} {operator} {second_number} = {first_result}')
 
 # keep calculating or not
-while True:
-    y_or_n = input(f"Type 'y' to continue calculating with {first_result}, or type 'n' to start a new calculation: ")
-    if y_or_n == 'n':
-        clear()
-        first_result = 0
-        flag = True
-        break
-    elif y_or_n == 'y':
-        flag = False
-        break
+continue_or_not(first_result)
 
 # calculating second answer and ask user keep calculating or not
 while not flag:
@@ -56,15 +60,6 @@ while not flag:
 
     print(f'{first_result} {operator} {next_number} = {new_result}')
 
-    while True:
-        y_or_n = input(f"Type 'y' to continue calculating with {new_result}, or type 'n' to start a new calculation: ")
-        if y_or_n == 'n':
-            clear()
-            first_result = 0
-            flag = True
-            break
-        elif y_or_n == 'y':
-            flag = False
-            break
+    continue_or_not(new_result)
     
     first_result = new_result
